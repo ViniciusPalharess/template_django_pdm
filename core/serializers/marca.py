@@ -1,8 +1,13 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
+from core.models import Marca
 
-from core.models import Categoria, Marca
-...
-class MarcaSerializer(ModelSerializer):
+class MarcaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Marca
         fields = "__all__"
+
+class MarcaDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Marca
+        fields = "__all__"
+        depth = 1

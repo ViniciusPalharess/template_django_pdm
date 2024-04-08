@@ -1,8 +1,13 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
+from core.models import Cor
 
-from core.models import Categoria, Cor
-...
-class CorSerializer(ModelSerializer):
+class CorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cor
         fields = "__all__"
+
+class CorDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cor
+        fields = "__all__"
+        depth = 1

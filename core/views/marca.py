@@ -1,9 +1,12 @@
 from rest_framework.viewsets import ModelViewSet
 
-from core.models import Categoria, Marca
-from core.serializers import CategoriaSerializer, MarcaSerializer
+from core.models import Marca
+from core.serializers import MarcaSerializer, MarcaDetailSerializer
 
-...
 class MarcaViewSet(ModelViewSet):
     queryset = Marca.objects.all()
-    serializer_class = MarcaSerializer
+
+    def get_serializer_class(self):
+        if self.action in ["list", "retrieve"]:
+            return MarcaDetailSerializer
+        return MarcaSerializer

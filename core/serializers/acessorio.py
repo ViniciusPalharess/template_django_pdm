@@ -1,8 +1,13 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
+from core.models import Acessorio
 
-from core.models import Categoria, Acessorio
-...
-class AcessorioSerializer(ModelSerializer):
+class AcessorioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Acessorio
         fields = "__all__"
+
+class AcessorioDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Acessorio
+        fields = "__all__"
+        depth = 1

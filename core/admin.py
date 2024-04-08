@@ -4,6 +4,7 @@ Django admin customization.
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
+from .models import Acessorio, Categoria, Cor, Marca
 
 from core import models
 
@@ -48,8 +49,8 @@ class UserAdmin(BaseUserAdmin):
     )
 
 
-admin.site.register(models.User, UserAdmin)
-admin.site.register(models.Acessorio)
-admin.site.register(models.Categoria)
-admin.site.register(models.Cor)
-admin.site.register(models.Marca)
+
+admin.site.register(Acessorio)
+admin.site.register(Categoria)
+admin.site.register(Cor)
+admin.site.register(Marca)
