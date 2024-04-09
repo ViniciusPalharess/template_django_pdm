@@ -9,6 +9,10 @@
   }
 },
 {
+  "username": "comprador1",
+  "password": "senha.123"
+},
+{
   "model": "auth.permission",
   "pk": 2,
   "fields": {

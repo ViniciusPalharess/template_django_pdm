@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-
+import os
 from dotenv import load_dotenv
 
 # Carrega as variáveis de ambiente do arquivo .env
@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     "core",
+    'uploader',
 ]
 
 MIDDLEWARE = [
@@ -141,6 +142,8 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "PAGE_SIZE": 10,
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",) ,
 }
 
 SPECTACULAR_SETTINGS = {
@@ -149,4 +152,8 @@ SPECTACULAR_SETTINGS = {
     "VERSION": "1.0.0",
 }
 
+MEDIA_URL = "http://0.0.0.0:19003/api/media/"
+MEDIA_ENDPOINT = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
+FILE_UPLOAD_PERMISSIONS = 0o640
 print(f"MODE: {MODE} \nMEDIA_URL: {MEDIA_URL} \nDATABASE: {DATABASES}")
