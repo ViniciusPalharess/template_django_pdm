@@ -18,7 +18,7 @@ from rest_framework.serializers import ModelSerializer, SlugRelatedField
 from uploader.models import Image
 from uploader.serializers import ImageSerializer
 ...
-class LivroSerializer(ModelSerializer):
+class Carro(ModelSerializer):
     carro_attachment_key = SlugRelatedField(
         source="carro",
         queryset=Image.objects.all(),
@@ -29,6 +29,6 @@ class LivroSerializer(ModelSerializer):
     carro = ImageSerializer(required=False, read_only=True)
 
 ...
-class LivroDetailSerializer(ModelSerializer):
+class CarroSerializer(ModelSerializer):
 
     carro = ImageSerializer(required=False)
