@@ -6,9 +6,10 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
 from .models import Acessorio, Categoria, Cor, Marca, User
 from django.contrib import admin
-from .models import Acessorio
-from core import models
+from core.models import Compra, ItensCompra
 
+class ItensCompraInline(admin.TabularInline):
+    model = ItensCompra
 
 
 
@@ -82,11 +83,10 @@ class AcessorioAdmin(admin.ModelAdmin):
     list_per_page = 25
 
 
+
 class UserAdmin(UserAdmin):
     fields: tuple = ("first_name", "last_name", "foto")
 
 
-from core.models import Compra
 
-admin.site.register(Compra)
 admin.site.register(User)
