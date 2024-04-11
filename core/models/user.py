@@ -1,17 +1,11 @@
-"""
-Database models.
-"""
 from django.contrib.auth.models import (
     AbstractBaseUser,
     BaseUserManager,
     PermissionsMixin,
 )
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-from django.db import models
-
+from django.utils.translation import gettext_lazy as _
 from uploader.models import Image
-
 
 class UserManager(BaseUserManager):
     """Manager for users."""
@@ -33,22 +27,22 @@ class UserManager(BaseUserManager):
         user.is_staff = True
         user.is_superuser = True
         user.save(using=self._db)
-
         return user
 
 
 class User(AbstractBaseUser, PermissionsMixin):
     """User model in the system."""
 
+    class TipoUsuario(models.IntegerChoices):
+        CLIENTE = 1, "Cliente"
+        VENDEDOR = 2, "Vendedor"
+        GERENTE = 3, "Gerente"
 
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-
-    objects = UserManager()
-
-    USERNAME_FIELD = "email"
+    tipo_usuario = models.IntegerField(_("User Type"), choices=TipoUsuario.choices, default=TipoUsuario.CLIENTE)
     foto = models.ForeignKey(
         Image,
         on_delete=models.SET_NULL,
@@ -56,3 +50,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         blank=True,
         default=None,
     )
+
+    objects = UserManager()
+    USERNAME_FIELD = "email"

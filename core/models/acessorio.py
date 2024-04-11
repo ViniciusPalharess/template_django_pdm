@@ -1,6 +1,7 @@
 from django.db import models
 from uploader.models import Image
 
+
 class Acessorio(models.Model):
     descricao = models.CharField(max_length=100)
     categoria = models.ForeignKey('core.Categoria', on_delete=models.CASCADE, default=1)
