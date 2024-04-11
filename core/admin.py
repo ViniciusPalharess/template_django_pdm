@@ -10,6 +10,8 @@ from .models import Acessorio
 from core import models
 
 
+
+
 class UserAdmin(BaseUserAdmin):
     """Define the admin pages for users."""
 
@@ -79,4 +81,12 @@ class AcessorioAdmin(admin.ModelAdmin):
     ordering = ('categoria', 'cor', 'categoria')
     list_per_page = 25
 
+
+class UserAdmin(UserAdmin):
+    fields: tuple = ("first_name", "last_name", "foto")
+
+
+from core.models import Compra
+
+admin.site.register(Compra)
 admin.site.register(User)
